@@ -17,7 +17,7 @@ const portfolioData = {
         email: "ajaykumarpmk@gmail.com",
         phone: "+91 8825910458",
         // Add your profile photo to public/images/ and update the path below
-        profileImage: null, // e.g. "/images/profile.jpg"
+        profileImage: "/images/profile.jpeg"
     },
 
     // ── About Me ───────────────────────────────────────────────

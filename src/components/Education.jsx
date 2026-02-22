@@ -47,12 +47,33 @@ export default function Education() {
                         </h3>
                     </div>
                     <div className="cert-grid">
-                        {certifications.map((cert, i) => (
-                            <div key={i} className="cert-badge">
-                                <FaCertificate />
-                                {cert}
-                            </div>
-                        ))}
+                        {certifications.map((cert, i) => {
+                            const name = typeof cert === 'string' ? cert : cert.name;
+                            const url = typeof cert === 'string' ? null : cert.url;
+
+                            if (url) {
+                                return (
+                                    <a
+                                        key={i}
+                                        href={url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="cert-badge"
+                                        style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+                                    >
+                                        <FaCertificate />
+                                        {name}
+                                    </a>
+                                );
+                            }
+
+                            return (
+                                <div key={i} className="cert-badge">
+                                    <FaCertificate />
+                                    {name}
+                                </div>
+                            );
+                        })}
                     </div>
                 </ScrollReveal>
 

@@ -1,6 +1,7 @@
 import { FaUserAstronaut } from 'react-icons/fa';
 import portfolioData from '../data/portfolioData';
 import ScrollReveal from './ScrollReveal';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function About() {
     const { about, personal, experience } = portfolioData;
@@ -44,15 +45,21 @@ export default function About() {
 
                         <div className="about-stats">
                             <div className="stat-card">
-                                <div className="stat-number">{yearsExp}+</div>
+                                <div className="stat-number">
+                                    <AnimatedCounter target={yearsExp} suffix="+" />
+                                </div>
                                 <div className="stat-label">Years Experience</div>
                             </div>
                             <div className="stat-card">
-                                <div className="stat-number">{experience.length}</div>
+                                <div className="stat-number">
+                                    <AnimatedCounter target={experience.length} suffix="" />
+                                </div>
                                 <div className="stat-label">Companies</div>
                             </div>
                             <div className="stat-card">
-                                <div className="stat-number">{portfolioData.projects.length}+</div>
+                                <div className="stat-number">
+                                    <AnimatedCounter target={portfolioData.projects.length} suffix="+" />
+                                </div>
                                 <div className="stat-label">Projects</div>
                             </div>
                         </div>

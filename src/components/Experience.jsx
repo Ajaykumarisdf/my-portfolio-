@@ -1,45 +1,52 @@
+import { useState } from 'react';
+import { FaMapMarkerAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import portfolioData from '../data/portfolioData';
 import ScrollReveal from './ScrollReveal';
 
 export default function Experience() {
     const { experience } = portfolioData;
+    const [expandedIdx, setExpandedIdx] = useState(null);
+    const PREVIEW_COUNT = 4;
+
+    const toggle = (i) => setExpandedIdx(expandedIdx === i ? null : i);
 
     return (
         <section className="section" id="experience">
             <div className="container">
                 <ScrollReveal>
                     <div className="section-header">
-                        <span className="section-icon">💼</span>
                         <h2 className="section-title">Experience</h2>
-                        <p className="section-subtitle">
-                            My professional journey in cloud infrastructure and DevOps
-                        </p>
                     </div>
                 </ScrollReveal>
 
-                <div className="timeline">
-                    {experience.map((exp, i) => (
-                        <ScrollReveal
-                            key={i}
-                            className={i % 2 === 0 ? 'reveal-left' : 'reveal-right'}
-                            delay={i * 150}
-                        >
-                            <div className="timeline-item">
-                                <div className={`timeline-dot${exp.current ? ' current' : ''}`}></div>
-                                <div className="glass-card timeline-content">
-                                    <span className="timeline-period">{exp.period}</span>
-                                    <h3 className="timeline-role">{exp.role}</h3>
-                                    <p className="timeline-company">{exp.company}</p>
-                                    <p className="timeline-location">📍 {exp.location}</p>
-                                    <ul className="timeline-bullets">
-                                        {exp.bullets.map((bullet, j) => (
-                                            <li key={j}>{bullet}</li>
-                                        ))}
+                <div className="exp-scroll-row">
+                    {experience.map((job, i) => {
+                        const isExpanded = expandedIdx === i;
+                        const bulletsToShow = isExpanded ? job.bullets : job.bullets.slice(0, PREVIEW_COUNT);
+                        const hasMore = job.bullets.length > PREVIEW_COUNT;
+
+                        return (
+                            <ScrollReveal key={i} delay={i * 100}>
+                                <div className={`glass-card exp-card${job.current ? ' exp-current' : ''}`}>
+                                    <div className="exp-card-top">
+                                        <span className="exp-period">{job.period}</span>
+                                        {job.current && <span className="exp-badge-current">Current</span>}
+                                    </div>
+                                    <h3 className="exp-role">{job.role}</h3>
+                                    <p className="exp-company">{job.company}</p>
+                                    <p className="exp-location"><FaMapMarkerAlt /> {job.location}</p>
+                                    <ul className="exp-bullets">
+                                        {bulletsToShow.map((b, j) => <li key={j}>{b}</li>)}
                                     </ul>
+                                    {hasMore && (
+                                        <button className="expand-btn" onClick={() => toggle(i)}>
+                                            {isExpanded ? <><FaChevronUp /> Show Less</> : <><FaChevronDown /> +{job.bullets.length - PREVIEW_COUNT} More</>}
+                                        </button>
+                                    )}
                                 </div>
-                            </div>
-                        </ScrollReveal>
-                    ))}
+                            </ScrollReveal>
+                        );
+                    })}
                 </div>
             </div>
         </section>

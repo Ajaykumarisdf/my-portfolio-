@@ -1,4 +1,4 @@
-import { FaCloud, FaDocker, FaServer, FaShieldAlt } from 'react-icons/fa';
+import { FaCloud, FaDocker, FaServer, FaShieldAlt, FaCode } from 'react-icons/fa';
 import portfolioData from '../data/portfolioData';
 import ScrollReveal from './ScrollReveal';
 
@@ -7,6 +7,7 @@ const iconMap = {
     FaDocker: FaDocker,
     FaServer: FaServer,
     FaShieldAlt: FaShieldAlt,
+    FaCode: FaCode,
 };
 
 export default function Skills() {

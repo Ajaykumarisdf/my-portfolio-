@@ -1,4 +1,4 @@
-import { FaRocket } from 'react-icons/fa';
+import { FaRocket, FaGithub } from 'react-icons/fa';
 import portfolioData from '../data/portfolioData';
 import ScrollReveal from './ScrollReveal';
 
@@ -30,6 +30,23 @@ export default function Projects() {
                                             <FaRocket />
                                         </div>
                                     )}
+
+                                    {/* Architecture Diagram Overlay on hover */}
+                                    {project.archFlow && (
+                                        <div className="project-arch-overlay">
+                                            <div className="project-arch-diagram">
+                                                <h4>⚙ Architecture</h4>
+                                                <div className="arch-flow">
+                                                    {project.archFlow.map((node, j) => (
+                                                        <span key={j}>
+                                                            <span className="arch-node">{node}</span>
+                                                            {j < project.archFlow.length - 1 && <span className="arch-arrow"> → </span>}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="project-body">
@@ -38,9 +55,7 @@ export default function Projects() {
 
                                     <div className="project-tech">
                                         {project.tech.map((t) => (
-                                            <span key={t} className="tag">
-                                                {t}
-                                            </span>
+                                            <span key={t} className="tag">{t}</span>
                                         ))}
                                     </div>
 
@@ -49,6 +64,18 @@ export default function Projects() {
                                             <li key={j}>{b}</li>
                                         ))}
                                     </ul>
+
+                                    {project.github && (
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn btn-secondary"
+                                            style={{ marginTop: '20px', display: 'inline-flex', fontSize: '0.9rem', padding: '10px 24px' }}
+                                        >
+                                            <FaGithub /> View on GitHub
+                                        </a>
+                                    )}
 
                                     {project.liveImage && (
                                         <div className="project-live-image">

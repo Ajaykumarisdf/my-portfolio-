@@ -1,5 +1,6 @@
 import './index.css';
 import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -43,6 +44,7 @@ function App() {
         <BottomSection />
       </main>
       <Footer />
+      <Analytics />
     </>
   );
 }
